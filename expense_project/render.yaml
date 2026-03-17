@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: expense-manager
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn expense_project.wsgi"

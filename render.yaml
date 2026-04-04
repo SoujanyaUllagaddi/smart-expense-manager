@@ -2,10 +2,12 @@ services:
   - type: web
     name: smart-expense-manager
     env: python
-    buildCommand: "pip install -r requirements.txt"
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
     startCommand: "gunicorn expense_project.wsgi:application"
     envVars:
       - key: DEBUG
         value: False
       - key: SECRET_KEY
         generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.10.0
